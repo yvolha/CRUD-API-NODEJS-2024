@@ -1,0 +1,16 @@
+{
+  "name": "crud-api-nodejs-2024",
+  "version": "1.0.0",
+  "description": "CRUD API NodeJS",
+  "main": "index.ts",
+  "scripts": {
+    "start:dev": "",
+    "start:prod": ""
+  },
+  "author": "yvolha",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "typescript": "^5.6.3"
+  }
+}
