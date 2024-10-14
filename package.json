@@ -4,13 +4,14 @@
   "description": "CRUD API NodeJS",
   "main": "index.ts",
   "scripts": {
-    "start:dev": "",
-    "start:prod": ""
+    "start:dev": "npx nodemon",
+    "start:prod": "tsc && node dist/index.js"
   },
   "author": "yvolha",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^22.7.5",
+    "nodemon": "^3.1.7",
     "typescript": "^5.6.3"
   }
 }

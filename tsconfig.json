@@ -6,13 +6,13 @@
     "rootDir": "src",   
     "moduleResolution": "Node",                                
     "allowJs": true,                                    
-    "checkJs": true,                                    
-    "sourceMap": true,                                  
-    "outDir": "build",                                  
+    "checkJs": true,                                                                   
+    "outDir": "dist",                                  
     "esModuleInterop": true,                             
     "forceConsistentCasingInFileNames": true,           
     "strict": true,                                      
     "noImplicitAny": true,                              
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": "./",
   }
 }
