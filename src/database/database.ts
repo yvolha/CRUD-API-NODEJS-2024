@@ -1,3 +1,3 @@
-export const DATABASE = {
-    
-}
+import { IDatabase } from "./database.type";
+
+export const DATABASE: IDatabase = {};
