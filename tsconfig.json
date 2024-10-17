@@ -3,16 +3,17 @@
     "target": "es2016",                                
     "lib": ["es6"],                                     
     "module": "NodeNext",                                 
-    "rootDir": "src",   
+    "rootDir": ".",   
     "moduleResolution": "NodeNext",                                
     "allowJs": true,                                    
     "checkJs": true,                                                                   
-    "outDir": "dist",                                  
-    "esModuleInterop": true,                             
+    "outDir": "dist",                           
     "forceConsistentCasingInFileNames": true,           
     "strict": true,                                      
     "noImplicitAny": true,                              
     "skipLibCheck": true,
-    "baseUrl": "./",
-  }
+    "types": ["@types/node"],
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

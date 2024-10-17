@@ -3,9 +3,10 @@ import dotenv from 'dotenv';
 
 import { RESPONSE_CODES } from './constants/response-codes.constant';
 import { printMagentaText } from './utils/get-color-coded-text';
-import { sendError } from './components/util/send-error';
+
 import { handleRequest } from './components/request-handler';
 import { INTERNAL_SERVER_ERROR } from './utils/get-error-message';
+import { sendError } from './utils/send-error';
 
 
 dotenv.config();
