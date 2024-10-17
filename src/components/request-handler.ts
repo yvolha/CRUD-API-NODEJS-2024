@@ -1,7 +1,5 @@
-import { POST_REQ_REQUIRED_PROPS } from "./request-handler.type";
+import { IncomingMessage } from "http"
 
-export const POST_REQUEST_REQUIRED_PROPERTIES: POST_REQ_REQUIRED_PROPS[] = [
-    POST_REQ_REQUIRED_PROPS.ID,
-    POST_REQ_REQUIRED_PROPS.USERNAME,
-    POST_REQ_REQUIRED_PROPS.HOBBIES,
-]
+export function handleRequest (req: IncomingMessage) {
+    console.log(req.method, req.url, req.headers);
+}

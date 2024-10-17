@@ -1,7 +1,11 @@
 import { createServer } from 'node:http';
 import dotenv from 'dotenv';
 
+import { RESPONSE_CODES } from './constants/response-codes.constant';
 import { printMagentaText } from './utils/get-color-coded-text';
+import { sendError } from './utils/send-error';
+import { handleRequest } from './components/request-handler';
+import { INTERNAL_SERVER_ERROR } from './utils/get-error-message';
 
 
 dotenv.config();
@@ -14,20 +18,14 @@ const server = createServer((req, res) => {
   console.log(req.method, req.url, req.headers);
 
   try {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({
-      data: 'Hello World!',
-    }));
+    handleRequest(req);
     
   } catch {
-    res.writeHead(500);
-    res.end(JSON.stringify({
-      data: 'Hello World!',
-    }));
+
+    sendError(res, RESPONSE_CODES.INTERNAL_SERVER_ERROR, INTERNAL_SERVER_ERROR);
   }
 
-   
-  });
+});
   
  console.log(SERVER_PORT) 
 server.listen(
