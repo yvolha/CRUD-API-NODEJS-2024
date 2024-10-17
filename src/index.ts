@@ -15,23 +15,15 @@ const SERVER_PORT = Number(process.env.SERVER_PORT) || DEFAULT_SERVER_PORT;
 const HOSTNAME = 'localhost';
 
 const server = createServer((req, res) => {
-  console.log(req.method, req.url, req.headers);
-
   try {
     handleRequest(req);
-    
   } catch {
-
     sendError(res, RESPONSE_CODES.INTERNAL_SERVER_ERROR, INTERNAL_SERVER_ERROR);
   }
-
 });
   
- console.log(SERVER_PORT) 
 server.listen(
   SERVER_PORT,
   HOSTNAME,
   () => console.log(printMagentaText(`The server is listening on http://${HOSTNAME}:${SERVER_PORT}\n\n`))
 );
-
-// console.log('The Index is here!');
