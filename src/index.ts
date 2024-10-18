@@ -2,9 +2,9 @@ import { createServer } from 'node:http';
 import dotenv from 'dotenv';
 
 import { RESPONSE_CODES } from './constants/response-codes.constant';
-import { printMagentaText } from './utils/get-color-coded-text';
+import { printBlueText, printMagentaText } from './utils/get-color-coded-text';
 
-import { handleRequest } from './components/request-handler';
+import { handleRequest } from './request-handler/request-handler';
 import { INTERNAL_SERVER_ERROR } from './utils/get-error-message';
 import { sendError } from './utils/send-error';
 
@@ -17,7 +17,7 @@ const HOSTNAME = 'localhost';
 
 const server = createServer((req, res) => {
   try {
-    handleRequest(req);
+    handleRequest(req, res);
   } catch {
     sendError(res, RESPONSE_CODES.INTERNAL_SERVER_ERROR, INTERNAL_SERVER_ERROR);
   }
@@ -26,5 +26,12 @@ const server = createServer((req, res) => {
 server.listen(
   SERVER_PORT,
   HOSTNAME,
-  () => console.log(printMagentaText(`The server is listening on http://${HOSTNAME}:${SERVER_PORT}\n\n`))
+  () => printMagentaText(`The server is listening on http://${HOSTNAME}:${SERVER_PORT}\n\n`)
 );
+
+process.on("SIGINT", () => {
+  setImmediate(() => {
+    printBlueText(`The server has stopped listening on http://${HOSTNAME}:${SERVER_PORT}\n\n`)
+    process.exit(0)
+  });
+});
