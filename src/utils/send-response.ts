@@ -1,12 +1,11 @@
 import { OutgoingHttpHeaders, ServerResponse } from "http";
 
-export const sendRes = (
+export const sendResponse = (
     res: ServerResponse, 
     data?: unknown, 
-    headers?: OutgoingHttpHeaders,
     statusCode?: number,
+    headers: OutgoingHttpHeaders = { 'Content-Type': 'application/json' },
 ) => {
-    const statCode = statusCode || 200;
-    res.writeHead(statCode, headers);
+    res.writeHead(statusCode || 200, headers);
     res.end(JSON.stringify(data));
   };

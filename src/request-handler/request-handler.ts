@@ -12,7 +12,7 @@ export async function handleRequest (req: IncomingMessage, res: ServerResponse) 
 
     switch (req.method) {
         case REQUEST_METHODS.GET:
-            await handleRequestGet(normalizedUrl);
+            await handleRequestGet(normalizedUrl, res);
             break;
         default:
             sendError(res, 500, UNSUPPORTED_METHOD_ERROR);
