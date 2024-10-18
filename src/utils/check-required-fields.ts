@@ -12,6 +12,5 @@ export default function checkRequiredFields( data: unknown): boolean {
         return false;
     }
     
-    
     return true;
 }
