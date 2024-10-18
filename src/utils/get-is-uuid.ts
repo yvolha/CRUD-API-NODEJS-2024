@@ -1,6 +1,6 @@
 import { validate } from "uuid";
 
-export const isUuidValid = (value: unknown) => {
+export default function getIsUuidValid (value: unknown) {
   if (typeof value === "string") {
     return validate(value);
   } 

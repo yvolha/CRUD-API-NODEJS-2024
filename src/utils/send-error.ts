@@ -5,6 +5,7 @@ export const sendError = (
     statusCode: number,
     message: string,
 ) => {
+    console.log('im here')
     res.statusCode = statusCode;
     res.end(JSON.stringify({ message }));
 };

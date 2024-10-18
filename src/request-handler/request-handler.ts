@@ -4,6 +4,7 @@ import { REQUEST_METHODS } from "./request-handler.type";
 import handleRequestGet from "./handlers/request-handler-get";
 import { sendError } from "../utils/send-error";
 import { UNSUPPORTED_METHOD_ERROR } from "../utils/get-error-message";
+import { RESPONSE_CODES } from "../constants/response-codes.constant";
 
 export async function handleRequest (req: IncomingMessage, res: ServerResponse) {
     console.log(req.method, req.url, req.headers);
@@ -12,9 +13,9 @@ export async function handleRequest (req: IncomingMessage, res: ServerResponse) 
 
     switch (req.method) {
         case REQUEST_METHODS.GET:
-            await handleRequestGet(normalizedUrl, res);
+            handleRequestGet(normalizedUrl, res);
             break;
         default:
-            sendError(res, 500, UNSUPPORTED_METHOD_ERROR);
+            sendError(res, RESPONSE_CODES.INTERNAL_SERVER_ERROR, UNSUPPORTED_METHOD_ERROR);
     }
 }
