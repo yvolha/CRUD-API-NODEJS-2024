@@ -11,7 +11,7 @@ import { sendError } from "../../utils/send-error";
 import { RESPONSE_CODES } from "../../constants/response-codes.constant";
 import { getBadRequestInvalidMessage, getNotFoundMessage, getUnsupportedEndpointMessage } from "../../utils/get-error-message";
 
-export default async function handleRequestGet(path: string, res: ServerResponse) {
+export default function handleRequestGet(path: string, res: ServerResponse) {
 
     if (path === ENDPOINTS.API_USERS) {
         sendResponse(res, DATABASE, RESPONSE_CODES.OK);
