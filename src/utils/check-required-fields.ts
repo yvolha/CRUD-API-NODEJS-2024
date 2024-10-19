@@ -2,19 +2,16 @@ import { ServerResponse } from "http";
 import { IPostRequestRequiredProps, POST_REQ_REQUIRED_PROPS } from "../request-handler/request-handler.type";
 import { sendError } from "./send-error";
 import { RESPONSE_CODES } from "../constants/response-codes.constant";
-import { getBadRequestPropertiestMessage } from "./get-error-message";
+import { getBadRequestFormatMessage, getBadRequestPropertiestMessage } from "./get-error-message";
 
 export default function checkRequiredFields(data: IPostRequestRequiredProps, res: ServerResponse): boolean {
     const isDataObject = typeof data === 'object' && !Array.isArray(data) && data !== null;
 
-    if (!isDataObject) {
-        return false;
-    }
-
     const correctObjectSize = 3;
-    const isDataSizeCorrect = Object.keys(data).length === correctObjectSize;
+    const isDataSizeCorrect = Object.keys(data)?.length === correctObjectSize;
 
-    if (!isDataSizeCorrect){
+    if (!isDataSizeCorrect || !isDataObject) {
+        sendError(res, RESPONSE_CODES.BAD_REQUEST, getBadRequestFormatMessage());
         return false;
     }
 
