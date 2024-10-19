@@ -1,4 +1,6 @@
-export default function checkRequiredFields( data: unknown): boolean {
+import { IPostRequestRequiredProps, POST_REQ_REQUIRED_PROPS } from "../request-handler/request-handler.type";
+
+export default function checkRequiredFields(data: IPostRequestRequiredProps): boolean {
     const isDataObject = typeof data === 'object' && !Array.isArray(data) && data !== null;
 
     if (!isDataObject) {
@@ -11,6 +13,20 @@ export default function checkRequiredFields( data: unknown): boolean {
     if (!isDataSizeCorrect){
         return false;
     }
+
+    const incorrectPostProps = [];
+
+    if (data[POST_REQ_REQUIRED_PROPS.AGE]
+        && typeof data[POST_REQ_REQUIRED_PROPS.AGE] === 'number'
+        && data[POST_REQ_REQUIRED_PROPS.USERNAME]
+        && typeof data[POST_REQ_REQUIRED_PROPS.USERNAME] === 'string'
+        && data[POST_REQ_REQUIRED_PROPS.HOBBIES]
+        && Array.isArray(data[POST_REQ_REQUIRED_PROPS.HOBBIES]
+        && data[POST_REQ_REQUIRED_PROPS.HOBBIES].every(item => typeof item === 'string')
+        )
+    ) {
+        return true;
+    }
     
-    return true;
+    return false;
 }
