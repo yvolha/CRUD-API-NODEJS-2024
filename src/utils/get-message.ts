@@ -24,3 +24,5 @@ export const INTERNAL_SERVER_ERROR = 'An internal server error has occured.';
 export const UNSUPPORTED_METHOD_ERROR = 'This method is not supported; please send a request with one of the supported methods: GET, POST, PUT, DELETE.';
 
 export const INCORRECT_JSON = 'The data sent in the request body is of incorrect format.'
+
+export const USER_CREATED = 'The new user is created successfully.'

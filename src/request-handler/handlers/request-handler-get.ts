@@ -9,7 +9,7 @@ import getLastUrlPart from "../../utils/get-last-url-part";
 import getIsUuidValid from "../../utils/get-is-uuid";
 import { sendError } from "../../utils/send-error";
 import { RESPONSE_CODES } from "../../constants/response-codes.constant";
-import { getBadRequestInvalidMessage, getNotFoundMessage, getUnsupportedEndpointMessage } from "../../utils/get-error-message";
+import { getBadRequestInvalidMessage, getNotFoundMessage, getUnsupportedEndpointMessage } from "../../utils/get-message";
 
 export default function handleRequestGet(path: string, res: ServerResponse) {
 

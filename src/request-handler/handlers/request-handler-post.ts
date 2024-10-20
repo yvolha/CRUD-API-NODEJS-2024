@@ -3,12 +3,13 @@ import { v6 as uuidv6 } from 'uuid';
 
 
 import checkRequiredFields from "../../utils/check-required-fields";
-import { ENDPOINTS, IPostRequestRequiredProps, POST_REQ_REQUIRED_PROPS } from "../request-handler.type";
+import { ENDPOINTS, IPostRequestRequiredProps } from "../request-handler.type";
 import { getParsedJson } from "../../utils/get-parsed-json";
 import { sendError } from "../../utils/send-error";
 import { RESPONSE_CODES } from "../../constants/response-codes.constant";
-import { getUnsupportedEndpointMessage, INCORRECT_JSON } from "../../utils/get-error-message";
+import { getUnsupportedEndpointMessage, INCORRECT_JSON } from "../../utils/get-message";
 import { DATABASE } from "../../database/database";
+import { sendResponse } from "../../utils/send-response";
 
 export default function handleRequestPost (
     path: string,
@@ -25,8 +26,6 @@ export default function handleRequestPost (
         });
 
         req.on('end', () => {
-            console.log(data);
-
             const parsedJson = getParsedJson(data);
 
             if (!parsedJson) {
@@ -34,18 +33,18 @@ export default function handleRequestPost (
                 return;
             }
 
-            if (checkRequiredFields(data as unknown as IPostRequestRequiredProps, res)) {
+            if (checkRequiredFields(parsedJson as unknown as IPostRequestRequiredProps, res)) {
                 const newUserUuid = uuidv6();
-                const userData = data as unknown as IPostRequestRequiredProps;
+                const userData = parsedJson as unknown as IPostRequestRequiredProps;
 
-                DATABASE.newUserUuid = {
+                const newUser = {
                     id: newUserUuid,
-                    username: userData[POST_REQ_REQUIRED_PROPS.USERNAME],
-                    age: userData[POST_REQ_REQUIRED_PROPS.AGE],
-                    hobbies: userData[POST_REQ_REQUIRED_PROPS.HOBBIES],
+                    ...userData,
                 }
 
-                console.log('DATABASE.newUserUuid', DATABASE.newUserUuid)
+                DATABASE[newUserUuid] = newUser;
+
+                sendResponse(res, newUser, RESPONSE_CODES.CREATED);
             }
         })
 

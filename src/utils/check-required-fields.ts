@@ -2,7 +2,7 @@ import { ServerResponse } from "http";
 import { IPostRequestRequiredProps, POST_REQ_REQUIRED_PROPS } from "../request-handler/request-handler.type";
 import { sendError } from "./send-error";
 import { RESPONSE_CODES } from "../constants/response-codes.constant";
-import { getBadRequestFormatMessage, getBadRequestPropertiestMessage } from "./get-error-message";
+import { getBadRequestFormatMessage, getBadRequestPropertiestMessage } from "./get-message";
 
 export default function checkRequiredFields(data: IPostRequestRequiredProps, res: ServerResponse): boolean {
     const isDataObject = typeof data === 'object' && !Array.isArray(data) && data !== null;

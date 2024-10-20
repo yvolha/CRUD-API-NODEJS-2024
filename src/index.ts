@@ -5,7 +5,7 @@ import { RESPONSE_CODES } from './constants/response-codes.constant';
 import { printBlueText, printMagentaText } from './utils/get-color-coded-text';
 
 import { handleRequest } from './request-handler/request-handler';
-import { INTERNAL_SERVER_ERROR } from './utils/get-error-message';
+import { INTERNAL_SERVER_ERROR } from './utils/get-message';
 import { sendError } from './utils/send-error';
 
 

@@ -3,7 +3,7 @@ import { getNormalizedUrl } from "../utils/get-normalized-url";
 import { REQUEST_METHODS } from "./request-handler.type";
 import handleRequestGet from "./handlers/request-handler-get";
 import { sendError } from "../utils/send-error";
-import { UNSUPPORTED_METHOD_ERROR } from "../utils/get-error-message";
+import { UNSUPPORTED_METHOD_ERROR } from "../utils/get-message";
 import { RESPONSE_CODES } from "../constants/response-codes.constant";
 import handleRequestPost from "./handlers/request-handler-post";
 
