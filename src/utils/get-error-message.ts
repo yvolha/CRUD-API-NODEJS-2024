@@ -8,7 +8,7 @@ export function getBadRequestInvalidMessage(userId: string) {
 }
 
 export function getBadRequestPropertiestMessage(incorrectProps: string[]) {
-    return `The request does not include the required properties, or has errors in the listed properties: ${incorrectProps.join(' ')}.`;
+    return `The request does not include the required properties, or has errors in the listed properties: ${incorrectProps.join(', ')}.`;
 }
 
 export function getBadRequestFormatMessage() {
