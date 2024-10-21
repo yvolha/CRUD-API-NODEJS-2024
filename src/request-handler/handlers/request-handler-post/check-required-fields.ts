@@ -1,9 +1,9 @@
 import { ServerResponse } from "http";
-import { IPostRequestRequiredProps, POST_REQ_REQUIRED_PROPS } from "../request-handler/request-handler.type";
-import { sendError } from "./send-error";
-import { RESPONSE_CODES } from "../constants/response-codes.constant";
-import { getBadRequestFormatMessage, getBadRequestPropertiestMessage } from "./get-message";
-import { getIsAgeInCorrectFormat, getIsDataObject, getIsHobbiesInCorrectFormat, getIsUsernameInCorrectFormat } from "./check-format";
+import { IPostRequestRequiredProps, POST_REQ_REQUIRED_PROPS } from "../../request-handler.type";
+import { sendError } from "../../../utils/send-error";
+import { RESPONSE_CODES } from "../../../constants/response-codes.constant";
+import { getBadRequestFormatMessage, getBadRequestPropertiestMessage } from "../../../utils/get-message";
+import { getIsAgeInCorrectFormat, getIsDataObject, getIsHobbiesInCorrectFormat, getIsUsernameInCorrectFormat } from "../../../utils/check-format";
 
 export default function checkRequiredFields(data: IPostRequestRequiredProps, res: ServerResponse): boolean {
     const isDataObject = getIsDataObject(data);

@@ -2,7 +2,7 @@ import { IncomingMessage, ServerResponse } from "node:http";
 import { v6 as uuidv6 } from 'uuid';
 
 
-import checkRequiredFields from "../../utils/check-required-fields";
+import checkRequiredFields from "./request-handler-post/check-required-fields";
 import { ENDPOINTS, IPostRequestRequiredProps } from "../request-handler.type";
 import { getParsedJson } from "../../utils/get-parsed-json";
 import { sendError } from "../../utils/send-error";

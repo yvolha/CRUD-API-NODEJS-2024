@@ -5,7 +5,7 @@ import handleRequestGet from "./handlers/request-handler-get";
 import { sendError } from "../utils/send-error";
 import { UNSUPPORTED_METHOD_ERROR } from "../utils/get-message";
 import { RESPONSE_CODES } from "../constants/response-codes.constant";
-import handleRequestPost from "./handlers/request-handler-post";
+import handleRequestPost from "./handlers/request-handler-post/request-handler-post";
 
 export async function handleRequest (req: IncomingMessage, res: ServerResponse) {
     console.log(req.method, req.url, req.headers);
