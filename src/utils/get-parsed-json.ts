@@ -1,4 +1,6 @@
-export function getParsedJson(str: string): Object | null {
+import { IPostRequestRequiredProps } from "../request-handler/request-handler.type";
+
+export function getParsedJson(str: string): IPostRequestRequiredProps | null {
     try {
       const parsedJson = JSON.parse(str);
       return parsedJson;
