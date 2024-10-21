@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "start:dev": "npx nodemon",
+    "start:multi": "npx nodemon -- --cluster",
     "start:prod": "tsc && node dist/src/index.js"
   },
   "author": "yvolha",
