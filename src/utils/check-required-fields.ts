@@ -17,15 +17,15 @@ export default function checkRequiredFields(data: IPostRequestRequiredProps, res
 
     const incorrectPostProps = [];
 
-    if (!getIsUsernameInCorrectFormat(data)){
+    if (!getIsUsernamePresentAndCorrect(data)){
         incorrectPostProps.push(POST_REQ_REQUIRED_PROPS.USERNAME);
     }
 
-    if (!getIsAgeInCorrectFormat(data)){
+    if (!getIsAgePresentAndCorrect(data)){
         incorrectPostProps.push(POST_REQ_REQUIRED_PROPS.AGE);
     }
 
-    if (!getIsHobbiesInCorrectFormat(data)){
+    if (!getIsHobbiesPresentAndCorrect(data)){
         incorrectPostProps.push(POST_REQ_REQUIRED_PROPS.HOBBIES);
     }
 
@@ -37,16 +37,28 @@ export default function checkRequiredFields(data: IPostRequestRequiredProps, res
     return true;
 }
 
-export function getIsUsernameInCorrectFormat (data: IPostRequestRequiredProps) {
-    return data[POST_REQ_REQUIRED_PROPS.USERNAME] && typeof data[POST_REQ_REQUIRED_PROPS.USERNAME] === 'string';
+export function getIsUsernameInCorrectFormat (username: IPostRequestRequiredProps['username']) {
+    return typeof username === 'string';
 }
 
-export function getIsAgeInCorrectFormat (data: IPostRequestRequiredProps) {
-    return data[POST_REQ_REQUIRED_PROPS.AGE] && typeof data[POST_REQ_REQUIRED_PROPS.AGE] === 'number';
+export function getIsAgeInCorrectFormat (age: IPostRequestRequiredProps['age']) {
+    return typeof age === 'number';
 }
 
-export function getIsHobbiesInCorrectFormat (data: IPostRequestRequiredProps) {
+export function getIsHobbiesInCorrectFormat (hobbies: IPostRequestRequiredProps['hobbies']) {
+    return Array.isArray(hobbies)
+    && hobbies.every(hobby => typeof hobby === 'string');
+}
+
+function getIsUsernamePresentAndCorrect (data: IPostRequestRequiredProps) {
+    return data[POST_REQ_REQUIRED_PROPS.USERNAME] && getIsUsernameInCorrectFormat(data[POST_REQ_REQUIRED_PROPS.USERNAME]);
+}
+
+function getIsAgePresentAndCorrect (data: IPostRequestRequiredProps) {
+    return data[POST_REQ_REQUIRED_PROPS.AGE] && getIsAgeInCorrectFormat(data[POST_REQ_REQUIRED_PROPS.AGE]);
+}
+
+function getIsHobbiesPresentAndCorrect (data: IPostRequestRequiredProps) {
     return data[POST_REQ_REQUIRED_PROPS.HOBBIES]
-    && Array.isArray(data[POST_REQ_REQUIRED_PROPS.HOBBIES])
-    && data[POST_REQ_REQUIRED_PROPS.HOBBIES].every(item => typeof item === 'string');
+    && getIsHobbiesInCorrectFormat(data[POST_REQ_REQUIRED_PROPS.HOBBIES])
 }
