@@ -10,8 +10,6 @@ import handleRequestPut from "./handlers/request-handler-put";
 import handleRequestDelete from "./handlers/request-handler-delete";
 
 export async function handleRequest (req: IncomingMessage, res: ServerResponse) {
-    console.log(req.method, req.url, req.headers);
-
     const normalizedUrl = getNormalizedUrl(req.url);
 
     switch (req.method) {
