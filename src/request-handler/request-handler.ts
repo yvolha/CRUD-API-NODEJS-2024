@@ -7,6 +7,7 @@ import { UNSUPPORTED_METHOD_ERROR } from "../utils/get-message";
 import { RESPONSE_CODES } from "../constants/response-codes.constant";
 import handleRequestPost from "./handlers/request-handler-post/request-handler-post";
 import handleRequestPut from "./handlers/request-handler-put";
+import handleRequestDelete from "./handlers/request-handler-delete";
 
 export async function handleRequest (req: IncomingMessage, res: ServerResponse) {
     console.log(req.method, req.url, req.headers);
@@ -22,6 +23,9 @@ export async function handleRequest (req: IncomingMessage, res: ServerResponse) 
             break;
         case REQUEST_METHODS.PUT:
             handleRequestPut(normalizedUrl, req, res);
+            break;
+        case REQUEST_METHODS.DELETE:
+            handleRequestDelete(normalizedUrl, res);
             break;
         default:
             sendError(res, RESPONSE_CODES.INTERNAL_SERVER_ERROR, UNSUPPORTED_METHOD_ERROR);
