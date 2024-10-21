@@ -3,6 +3,7 @@ import { IPostRequestRequiredProps, POST_REQ_REQUIRED_PROPS } from "../request-h
 import { sendError } from "./send-error";
 import { RESPONSE_CODES } from "../constants/response-codes.constant";
 import { getBadRequestFormatMessage, getBadRequestPropertiestMessage } from "./get-message";
+import { getIsAgeInCorrectFormat, getIsDataObject, getIsHobbiesInCorrectFormat, getIsUsernameInCorrectFormat } from "./check-format";
 
 export default function checkRequiredFields(data: IPostRequestRequiredProps, res: ServerResponse): boolean {
     const isDataObject = getIsDataObject(data);
@@ -35,23 +36,6 @@ export default function checkRequiredFields(data: IPostRequestRequiredProps, res
     }
 
     return true;
-}
-
-export function getIsDataObject (data: unknown): boolean {
-    return typeof data === 'object' && !Array.isArray(data) && data !== null;
-}
-
-export function getIsUsernameInCorrectFormat (username: IPostRequestRequiredProps['username']): boolean {
-    return typeof username === 'string';
-}
-
-export function getIsAgeInCorrectFormat (age: IPostRequestRequiredProps['age']): boolean {
-    return typeof age === 'number';
-}
-
-export function getIsHobbiesInCorrectFormat (hobbies: IPostRequestRequiredProps['hobbies']): boolean {
-    return Array.isArray(hobbies)
-    && hobbies.every(hobby => typeof hobby === 'string');
 }
 
 function getIsUsernamePresentAndCorrect (data: IPostRequestRequiredProps): boolean {
