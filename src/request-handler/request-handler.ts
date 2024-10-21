@@ -19,6 +19,9 @@ export async function handleRequest (req: IncomingMessage, res: ServerResponse) 
         case REQUEST_METHODS.POST:
             handleRequestPost(normalizedUrl, req, res);
             break;
+        case REQUEST_METHODS.PUT:
+            handleRequestPost(normalizedUrl, req, res);
+            break;
         default:
             sendError(res, RESPONSE_CODES.INTERNAL_SERVER_ERROR, UNSUPPORTED_METHOD_ERROR);
     }
