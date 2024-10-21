@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "start:dev": "npx nodemon",
-    "start:prod": "tsc && node dist/index.js"
+    "start:prod": "tsc && node dist/src/index.js"
   },
   "author": "yvolha",
   "license": "ISC",
