@@ -5,7 +5,7 @@ import { RESPONSE_CODES } from "../constants/response-codes.constant";
 import { getBadRequestFormatMessage, getBadRequestPropertiestMessage } from "./get-message";
 
 export default function checkRequiredFields(data: IPostRequestRequiredProps, res: ServerResponse): boolean {
-    const isDataObject = typeof data === 'object' && !Array.isArray(data) && data !== null;
+    const isDataObject = getIsDataObject(data);
 
     const correctObjectSize = 3;
     const isDataSizeCorrect = Object.keys(data)?.length === correctObjectSize;
@@ -37,28 +37,32 @@ export default function checkRequiredFields(data: IPostRequestRequiredProps, res
     return true;
 }
 
-export function getIsUsernameInCorrectFormat (username: IPostRequestRequiredProps['username']) {
+export function getIsDataObject (data: unknown): boolean {
+    return typeof data === 'object' && !Array.isArray(data) && data !== null;
+}
+
+export function getIsUsernameInCorrectFormat (username: IPostRequestRequiredProps['username']): boolean {
     return typeof username === 'string';
 }
 
-export function getIsAgeInCorrectFormat (age: IPostRequestRequiredProps['age']) {
+export function getIsAgeInCorrectFormat (age: IPostRequestRequiredProps['age']): boolean {
     return typeof age === 'number';
 }
 
-export function getIsHobbiesInCorrectFormat (hobbies: IPostRequestRequiredProps['hobbies']) {
+export function getIsHobbiesInCorrectFormat (hobbies: IPostRequestRequiredProps['hobbies']): boolean {
     return Array.isArray(hobbies)
     && hobbies.every(hobby => typeof hobby === 'string');
 }
 
-function getIsUsernamePresentAndCorrect (data: IPostRequestRequiredProps) {
-    return data[POST_REQ_REQUIRED_PROPS.USERNAME] && getIsUsernameInCorrectFormat(data[POST_REQ_REQUIRED_PROPS.USERNAME]);
+function getIsUsernamePresentAndCorrect (data: IPostRequestRequiredProps): boolean {
+    return Boolean(data[POST_REQ_REQUIRED_PROPS.USERNAME] && getIsUsernameInCorrectFormat(data[POST_REQ_REQUIRED_PROPS.USERNAME]));
 }
 
-function getIsAgePresentAndCorrect (data: IPostRequestRequiredProps) {
-    return data[POST_REQ_REQUIRED_PROPS.AGE] && getIsAgeInCorrectFormat(data[POST_REQ_REQUIRED_PROPS.AGE]);
+function getIsAgePresentAndCorrect (data: IPostRequestRequiredProps): boolean {
+    return Boolean(data[POST_REQ_REQUIRED_PROPS.AGE] && getIsAgeInCorrectFormat(data[POST_REQ_REQUIRED_PROPS.AGE]));
 }
 
-function getIsHobbiesPresentAndCorrect (data: IPostRequestRequiredProps) {
+function getIsHobbiesPresentAndCorrect (data: IPostRequestRequiredProps): boolean {
     return data[POST_REQ_REQUIRED_PROPS.HOBBIES]
     && getIsHobbiesInCorrectFormat(data[POST_REQ_REQUIRED_PROPS.HOBBIES])
 }
